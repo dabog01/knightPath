@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const chessboard = new Chessboard("chessboard");
     let knight = new Knight("./images/knight.png", 0, 0);
-    let route = new KnightRoute(knight);
+    let route = new KnightTour(knight);
     const dragDrop = new DragDrop(document.getElementById("chessboard"), knight.knight);
 
     dragDrop.setKnightMoveCallback(() => {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         boardValues = []; // Limpiamos el registro de los valores del tablero al iniciar una nueva secuencia
 
         const currentPosition = knight.getCurrentPosition();
-        route = new KnightRoute(knight);
+        route = new KnightTour();
         const positions = route.generatePositions(currentPosition.row, currentPosition.col);
 
         function moveKnightToPosition(positionIndex) {
@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("Rows Sum:", sums.rows);
         console.log("Cols Sum:", sums.cols);
+
     }
 
     function clearRouteTable() {
